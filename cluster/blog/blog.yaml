@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: blog
-        image: ghcr.io/caffeinatedope/blog:latest@sha256:1c2833d643eabb5d30f5ec294eb1692d474f43ee9c3038cfa54040ae195af242 # {"$imagepolicy": "blog:blog-imagepolicy"}
+        image: ghcr.io/caffeinatedope/blog:latest@sha256:c047106f1b64598e46ab84aa3568ae75fe21cd3594ae43db55f0cebd8f954b18 # {"$imagepolicy": "blog:blog-imagepolicy"}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 4321
