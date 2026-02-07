@@ -76,7 +76,6 @@
     tailscale
     htop
     kitty
-    openiscsi
     nfs-utils
     libnfs
     bash
