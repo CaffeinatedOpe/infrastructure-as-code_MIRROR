@@ -5,7 +5,7 @@ metadata:
   name: ricochet-repo
   namespace: ricochet
 spec:
-  image: ghcr.io/caffeinatedope/ricochet
+  image: ghcr.io/caffeinatedope/ricochet-dev
   interval: 5m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1
