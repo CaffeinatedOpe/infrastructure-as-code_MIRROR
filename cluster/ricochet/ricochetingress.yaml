@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ricochet-ingress
+  namespace: ricochet
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: Host(`ricochet.caffeinatedope.net`)
+    kind: Rule
+    services:
+    - name: ricochet-service
+      port: 8081
+  tls: 
+    secretName: wildcard-cert
