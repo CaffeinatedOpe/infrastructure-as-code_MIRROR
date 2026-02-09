@@ -9,7 +9,7 @@ metadata:
   name: ricochet-deployment
   namespace: ricochet
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ricochet
@@ -24,14 +24,10 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
-        command: [ "/bin/sh", "-c", "ls /config" ]
         volumeMounts:
         - name: config-volume
-          mountPath: /config/
+          mountPath: /config
       volumes:
       - name: config-volume
-        configmap:
+        configMap:
           name: ricochet-configmap
-        items:
-        - key: config.toml
-          path: config.toml

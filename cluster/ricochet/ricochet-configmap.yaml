@@ -1,12 +1,12 @@
-    kind: ConfigMap
-    apiVersion: v1
-    metadata:
-      name: ricochet-configmap
-      namespace: ricochet
-    data:
-      config.toml: |
-        [paths]
-        creator = 'https://caffeinatedope.net/blog'
-        github = 'https://github.com/CaffeinatedOpe/ricochet'
-        [behaviors]
-        default_page = "https://github.com/CaffeinatedOpe/ricochet"
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ricochet-configmap
+  namespace: ricochet
+data:
+  config.toml: |
+    [paths]
+    creator = 'https://caffeinatedope.net/blog'
+    github = 'https://github.com/CaffeinatedOpe/ricochet'
+    [behaviors]
+    default_page = "https://github.com/CaffeinatedOpe/ricochet"
