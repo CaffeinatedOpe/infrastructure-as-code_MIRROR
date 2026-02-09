@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
-        command: [ [ "/bin/sh", "-c", "ls /config/" ] ]
+        command: [ "/bin/sh", "-c", "ls /config/" ]
         volumeMounts:
         - name: config-volume
           mountPath: /config/
