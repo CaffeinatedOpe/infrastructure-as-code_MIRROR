@@ -16,9 +16,6 @@ metadata:
   namespace: flux-system
 spec:
   summary: "cluster addons"
-  eventMetadata:
-    env: "production"
-    cluster: "my-cluster"
   providerRef:
     name: discord
   eventSeverity: info
