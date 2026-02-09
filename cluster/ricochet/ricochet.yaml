@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +17,7 @@ spec:
     spec:
       containers:
       - name: ricochet
-        image: ghcr.io/caffeinatedope/ricochet-dev:latest@sha256:a6757a3c3296fc9415ac743e6fa258efa97fd74b70445a639a2fc41f72a1c664  # {"$imagepolicy": "ricochet:ricochet-imagepolicy"}
+        image: ghcr.io/caffeinatedope/ricochet-dev:latest@sha256:6ba7c2196c16b777b04e365e164725a703394fe4070c4650ef04a0ef83f1585a # {"$imagepolicy": "ricochet:ricochet-imagepolicy"}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
