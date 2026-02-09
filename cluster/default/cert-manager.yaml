@@ -15,7 +15,8 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: cert-manager
+    namespaec: flux-system
+    name: flux-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -30,4 +31,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: cert-manager
+    namespaec: flux-system
+    name: flux-system
