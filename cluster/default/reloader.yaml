@@ -1,8 +1,14 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: reloader
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: reloader
-  namespace: flux-system
+  namespace: reloader
 spec:
   interval: 5m
   path: ./cluster/reloader

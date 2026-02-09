@@ -32,6 +32,4 @@ spec:
   values:
     jenkins:
       namespace: jenkins
-  driftDetection:
-    mode: enabled
 

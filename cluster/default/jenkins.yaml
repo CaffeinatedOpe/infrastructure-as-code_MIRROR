@@ -1,9 +1,14 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jenkins
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: jenkins-operator
-  namespace: flux-system
+  namespace: jenkins
 spec:
   interval: 5m
   path: ./cluster/jenkins/operator
@@ -16,7 +21,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: jenkins
-  namespace: flux-system
+  namespace: jenkins
 spec:
   dependsOn:
     - name: jenkins-operator
