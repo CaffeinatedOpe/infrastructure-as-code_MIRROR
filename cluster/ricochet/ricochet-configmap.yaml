@@ -8,5 +8,6 @@ data:
     [paths]
     creator = 'https://caffeinatedope.net/'
     github = 'https://github.com/CaffeinatedOpe/ricochet'
+    awesome = 'https://caffeinatedope.net/awesome'
     [behaviors]
-    default_page = "https://github.com/CaffeinatedOpe/ricochet"
+    default_page = 'https://github.com/CaffeinatedOpe/ricochet'
