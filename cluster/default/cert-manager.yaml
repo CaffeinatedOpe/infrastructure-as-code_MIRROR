@@ -15,7 +15,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    namespaec: flux-system
+    namespace: flux-system
     name: flux-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -31,5 +31,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    namespaec: flux-system
+    namespace: flux-system
     name: flux-system
