@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
-        command: [ "/bin/sh" ]
+        command: [ "/bin/sh -c cat" ]
         volumeMounts:
         - name: config-volume
           mountPath: /config/
@@ -32,3 +32,6 @@ spec:
       - name: config-volume
         configmap:
           name: ricochet-configmap
+        items:
+        - key: config.toml
+          path: config.toml
