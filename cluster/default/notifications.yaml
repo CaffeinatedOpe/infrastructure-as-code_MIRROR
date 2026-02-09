@@ -20,10 +20,12 @@ spec:
     env: "production"
     cluster: "my-cluster"
   providerRef:
-    name: slack-bot
+    name: discord
   eventSeverity: info
   eventSources:
     - kind: GitRepository
       name: '*'
     - kind: Kustomization
+      name: '*'
+    - kind: ImageRepository
       name: '*'
