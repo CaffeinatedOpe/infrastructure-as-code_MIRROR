@@ -8,6 +8,8 @@ kind: Deployment
 metadata:
   name: ricochet-deployment
   namespace: ricochet
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
