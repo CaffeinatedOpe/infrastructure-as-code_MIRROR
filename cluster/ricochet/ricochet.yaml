@@ -23,9 +23,9 @@ spec:
         - containerPort: 8081
         env:
         - name: CONFIGMAP
-          value: 1
+          value: "1"
         - name: CUSTOM_DEFAULT
-          value: https://caffeinatedope.net
+          value: "https://caffeinatedope.net"
         volumeMounts:
         - name: config-volume
           mountPath: /config
