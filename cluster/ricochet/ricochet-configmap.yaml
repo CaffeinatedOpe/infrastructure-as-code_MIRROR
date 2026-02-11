@@ -4,6 +4,6 @@ metadata:
   name: ricochet-configmap
   namespace: ricochet
 data:
-  - creator: https://caffeinatedope.net/
-  - github: https://github.com/CaffeinatedOpe/ricochet
-  - awesome: https://caffeinatedope.net/awesome
+  creator: https://caffeinatedope.net/
+  github: https://github.com/CaffeinatedOpe/ricochet
+  awesome: https://caffeinatedope.net/awesome
