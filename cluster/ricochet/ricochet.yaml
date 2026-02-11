@@ -21,6 +21,11 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
+        env:
+        - CONFIGMAP
+          1
+        - CUSTOM_DEFAULT
+          "https://caffeinatedope.net"
         volumeMounts:
         - name: config-volume
           mountPath: /config
