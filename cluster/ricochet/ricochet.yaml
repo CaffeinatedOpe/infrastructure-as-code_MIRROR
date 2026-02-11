@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: ricochet
-        image: ghcr.io/caffeinatedope/ricochet-dev:latest@sha256:6820ff132ddebe63a04d9e2aba35a2710eaa6aaa9c3454c1237629e7a29f51f8 # {"$imagepolicy": "ricochet:ricochet-imagepolicy"}
+        image: ghcr.io/caffeinatedope/ricochet-dev:latest@sha256:953a6840edc74d8cae080ac09593c4bf90111fe0ebb9f1e1afb0e5611faef888 # {"$imagepolicy": "ricochet:ricochet-imagepolicy"}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
