@@ -7,7 +7,6 @@ provisioner: nfs.csi.k8s.io
 parameters:
   server: 192.168.5.162
   share: /kubernetes
-  readOnly: "false"
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
