@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kubernetes-nfs-driver
+  name: csi-driver-nfs
   namespace: storage
 spec:
   interval: 24h
@@ -21,7 +21,7 @@ spec:
       version: 4.13.*
       sourceRef:
         kind: HelmRepository
-        name: kubernetes-nfs
+        name: csi-driver-nfs
       interval: 5m
   releaseName: csi-driver-nfs
   targetNamespace: storage
