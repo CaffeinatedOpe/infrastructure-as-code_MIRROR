@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: storage
 resources:
   - deployment.yaml
-  - nfs-server.yaml
   - storageclass.yaml
