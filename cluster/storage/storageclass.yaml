@@ -5,8 +5,8 @@ metadata:
   name: nfs-csi
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 192.168.5.162
-  share: /kubernetes
+  server: 192.168.7.155
+  share: /mnt/main/kubernetes
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
