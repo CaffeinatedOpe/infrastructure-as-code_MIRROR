@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: media-hosting
 resources:
   - jellyfin.yaml
+  - storage.yaml
