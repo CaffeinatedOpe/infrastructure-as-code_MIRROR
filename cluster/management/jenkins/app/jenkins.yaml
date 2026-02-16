@@ -65,7 +65,7 @@ spec:
       
   seedJobs:
     - id: iac-repo
-      targets: "cluster/jenkins/seed-jobs/*.groovy"
+      targets: "cluster/management/jenkins/seed-jobs/*.groovy"
       description: "Infrastructure As Code repo"
       repositoryBranch: master
       repositoryUrl: https://github.com/CaffeinatedOpe/infrastructure-as-code

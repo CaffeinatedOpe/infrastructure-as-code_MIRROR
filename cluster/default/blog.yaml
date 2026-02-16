@@ -11,7 +11,7 @@ metadata:
   namespace: blog
 spec:
   interval: 5m
-  path: ./cluster/public-facing/blog
+  path: ./cluster/publicFacing/blog
   prune: true
   sourceRef:
     kind: GitRepository
