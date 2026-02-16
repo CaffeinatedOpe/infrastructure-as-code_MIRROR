@@ -53,6 +53,7 @@ spec:
       limits:
         cpu: 2000m
         memory: 4Gi
+        gpu.intel.com/i915: 1
       requests:
         cpu: 500m
         memory: 1Gi
@@ -70,11 +71,7 @@ spec:
     affinity: {}
     securityContext:
       privileged: true
-
-    resources:
-      limits:
-        gpu.intel.com/i915: 1
-
+      
     extraVolumes:
       - name: dri
         hostPath:
