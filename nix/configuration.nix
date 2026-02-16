@@ -28,6 +28,17 @@
   };
   security.sudo.wheelNeedsPassword = false;
 
+  hardware.graphics = { 
+    enable = true;
+    extraPackages = with pkgs; [ 
+      vpl-gpu-rt
+      intel-media-driver 
+      libvdpau-va-gl
+    ];
+  };
+
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;
