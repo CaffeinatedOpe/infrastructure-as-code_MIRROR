@@ -5,7 +5,7 @@ metadata:
   name: media-generic-pv
   namespace: media-hosting
   labels:
-    bucket: shared
+    type: nfs-storage
 spec:
   accessModes:
     - ReadWriteMany
@@ -27,7 +27,7 @@ spec:
     - ReadWriteMany
   selector:
     matchLabels:
-      bucket: shared
+      type: nfs-storage
   resources:
     requests:
       storage: 8Ti
