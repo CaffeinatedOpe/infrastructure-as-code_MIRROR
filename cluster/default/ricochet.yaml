@@ -11,7 +11,7 @@ metadata:
   namespace: ricochet
 spec:
   interval: 5m
-  path: ./cluster/ricochet
+  path: ./cluster/public-facing/ricochet
   prune: true
   sourceRef:
     kind: GitRepository

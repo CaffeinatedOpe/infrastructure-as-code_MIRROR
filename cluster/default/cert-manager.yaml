@@ -11,7 +11,7 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 5m
-  path: ./cluster/cert-manager/controller
+  path: ./cluster/management/cert-manager/controller
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,7 +27,7 @@ spec:
   dependsOn:
     - name: cert-manager
   interval: 5m
-  path: ./cluster/cert-manager/certs
+  path: ./cluster/management/cert-manager/certs
   prune: true
   sourceRef:
     kind: GitRepository

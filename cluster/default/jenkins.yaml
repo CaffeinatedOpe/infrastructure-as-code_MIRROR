@@ -11,7 +11,7 @@ metadata:
   namespace: jenkins
 spec:
   interval: 5m
-  path: ./cluster/jenkins/operator
+  path: ./cluster/management/jenkins/operator
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,7 +27,7 @@ spec:
   dependsOn:
     - name: jenkins-operator
   interval: 5m
-  path: ./cluster/jenkins/app
+  path: ./cluster/management/jenkins/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -11,7 +11,7 @@ metadata:
   namespace: httpbin
 spec:
   interval: 10m0s
-  path: ./cluster/httpbin
+  path: ./cluster/fun/httpbin
   prune: true
   sourceRef:
     kind: GitRepository
