@@ -44,7 +44,7 @@ spec:
         ports:
         - containerPort: 4242
         volumeMounts:
-        - mountPath: "/usr/share/nginx/html"
+        - mountPath: "/var/www/html"
           name: blog-pvc
         - name: nginx-config
           mountPath: /etc/nginx/nginx.conf

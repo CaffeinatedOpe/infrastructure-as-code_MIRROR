@@ -24,7 +24,7 @@ data:
         listen 4242;
         location / {
           root /var/www/html;  # Directory containing static files
-          try_files $uri $uri/ =404;  # Serve 404 if file not found
+          autoindex on;
         }
       }
     }
