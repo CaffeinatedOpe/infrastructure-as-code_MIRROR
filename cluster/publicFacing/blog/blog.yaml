@@ -51,8 +51,9 @@ spec:
           subPath: nginx.conf
       volumes:
       - name: blog-pvc
-        persistentVolumeClaim:
-          claimName: blog-static-storage
+        nfs:
+          server: 192.168.7.155
+          path: /mnt/main/blog-data
       - name: nginx-config
         configMap:
           name: blog-static-configmap
