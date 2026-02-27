@@ -14,22 +14,14 @@ data:
     http {
       include       /etc/nginx/mime.types;
       default_type  application/octet-stream;
-      log_format  main  &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;
-                        &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;
-                        &#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;;
-
-      access_log  /var/log/nginx/access.log  main;
 
       sendfile        on;
-      #tcp_nopush     on;
 
       keepalive_timeout  60;
 
-      #gzip  on;
-
       include /etc/nginx/conf.d/*.conf;
       server {
-        listen 80;
+        listen 424242;
         server_name static.caffeinatedope.net;
         location / {
           root /var/www/html;  # Directory containing static files

@@ -22,5 +22,5 @@ spec:
   selector:
     app: blog-static
   ports:
-  - port: 80
-    targetPort: 80
+  - port: 424242
+    targetPort: 424242
