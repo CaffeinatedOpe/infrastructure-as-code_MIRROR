@@ -42,7 +42,7 @@ spec:
         image: nginx
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 4242
         volumeMounts:
         - mountPath: "/usr/share/nginx/html"
           name: blog-pvc
