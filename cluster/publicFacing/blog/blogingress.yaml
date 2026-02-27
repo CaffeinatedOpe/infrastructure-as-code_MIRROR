@@ -29,6 +29,6 @@ spec:
     kind: Rule
     services:
     - name: blog-static-service
-      port: 424242
+      port: 4242
   tls: 
     secretName: wildcard-cert
