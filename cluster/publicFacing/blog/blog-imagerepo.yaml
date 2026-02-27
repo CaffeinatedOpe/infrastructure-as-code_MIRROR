@@ -46,5 +46,5 @@ spec:
     push:
       branch: master
   update:
-    path: ./cluster/blog
+    path: ./cluster/publicFacing/blog
     strategy: Setters
