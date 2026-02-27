@@ -28,7 +28,7 @@ spec:
   - match: Host(`static.caffeinatedope.net`)
     kind: Rule
     services:
-    - name: blog-service
+    - name: blog-static-service
       port: 80
   tls: 
     secretName: wildcard-cert
