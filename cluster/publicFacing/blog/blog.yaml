@@ -47,7 +47,8 @@ spec:
         - mountPath: "/usr/share/nginx/html"
           name: blog-pvc
         - name: nginx-config
-          mountPath: /etc/nginx/
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
       volumes:
       - name: blog-pvc
         persistentVolumeClaim:
