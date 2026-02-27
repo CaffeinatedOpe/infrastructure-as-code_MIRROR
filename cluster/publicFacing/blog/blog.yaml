@@ -25,6 +25,8 @@ kind: Deployment
 metadata:
   name: blog-static-deployment
   namespace: blog
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 2
   selector:

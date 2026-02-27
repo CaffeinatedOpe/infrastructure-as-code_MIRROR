@@ -4,7 +4,7 @@ data:
     http {
       server {
         listen 80;
-        server_name *;
+        server_name static.caffeinatedope.net;
         location / {
           root /var/www/html;  # Directory containing static files
           try_files $uri $uri/ =404;  # Serve 404 if file not found
