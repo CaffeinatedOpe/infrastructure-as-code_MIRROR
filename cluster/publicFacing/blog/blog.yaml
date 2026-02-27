@@ -19,3 +19,20 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 4321
+      - name: blog-static
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: blog-pvc
+        - name: nginx-config
+          mountPath: /etc/nginx/
+      volumes:
+      - name: blog-pvc
+        persistentVolumeClaim:
+          claimName: blog-static-storage
+      - name: nginx-config
+        configMap:
+          name: blog-static-configmap

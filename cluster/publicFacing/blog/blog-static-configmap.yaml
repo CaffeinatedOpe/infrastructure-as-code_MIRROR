@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  nginx.conf: |
+    server {
+      listen 80;
+      server_name *;
+      location / {
+        root /var/www/html;  # Directory containing static files
+        try_files $uri $uri/ =404;  # Serve 404 if file not found
+      }
+    }
+kind: ConfigMap
+metadata:
+  name: blog-static-configmap
+  namespace: blog

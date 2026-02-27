@@ -6,3 +6,5 @@ resources:
   - blogsvc.yaml
   - blogingress.yaml
   - blog-imagerepo.yaml
+  - blog-pvc.yaml
+  - blog-static-configmap.yaml
