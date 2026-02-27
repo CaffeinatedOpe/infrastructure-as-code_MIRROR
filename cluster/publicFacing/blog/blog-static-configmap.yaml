@@ -25,6 +25,7 @@ data:
         location / {
           root /var/www/html;  # Directory containing static files
           autoindex on;
+          autoindex_format json;
         }
       }
     }
