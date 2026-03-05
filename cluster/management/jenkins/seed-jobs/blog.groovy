@@ -29,7 +29,7 @@ pipelineJob('blog') {
             scm {
                 git {
                     remote {
-                        url('https://github.com/CaffeinatedOpe/blog')
+                        url('https://codeberg.org/CaffeinatedOpe/blog')
                     }
                     branches('*/master')
                 }
