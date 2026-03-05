@@ -5,7 +5,7 @@ metadata:
   name: blog-repo
   namespace: blog
 spec:
-  image: ghcr.io/caffeinatedope/blog
+  image: codeberg.org/caffeinatedope/blog
   interval: 5m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1
