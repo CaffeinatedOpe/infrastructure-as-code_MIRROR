@@ -29,7 +29,7 @@ pipelineJob('ricochet') {
             scm {
                 git {
                     remote {
-                        url('https://github.com/CaffeinatedOpe/ricochet')
+                        url('https://codeberg.org/CaffeinatedOpe/ricochet')
                     }
                     branches('*/master')
                 }
