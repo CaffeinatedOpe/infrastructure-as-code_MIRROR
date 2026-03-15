@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: prosody
-        image: prosodyim/prosody
+        image: prosodyim/prosody:13.0
         ports:
         - containerPort: 5222
         envFrom:
