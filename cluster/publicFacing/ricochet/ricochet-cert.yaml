@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ricochet-cert
+  namespace: ricochet
+spec:
+  # Secret names are always required.
+  secretName: ricochet-cert
+  issuerRef:
+    name: cf-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - 'ricochet.caffeinatedope.net'

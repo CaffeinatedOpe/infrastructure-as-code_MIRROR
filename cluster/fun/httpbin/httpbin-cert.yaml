@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: httpbin-cert
+  namespace: httpbin
+spec:
+  # Secret names are always required.
+  secretName: httpbin-cert
+  issuerRef:
+    name: cf-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - 'httpbin.caffeinatedope.net'
