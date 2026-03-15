@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: xmpp-cert
+  namespace: xmpp
+spec:
+  # Secret names are always required.
+  secretName: xmpp-cert
+  issuerRef:
+    name: cf-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - xmpp.caffeinatedope.net

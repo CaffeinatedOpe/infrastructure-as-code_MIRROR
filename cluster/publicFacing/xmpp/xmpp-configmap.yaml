@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: xmpp-configmap
+  namespace: xmpp
+data:
+  LOCAL: caffeinatedope
+  DOMAIN: xmpp.caffeinatedope.net
+  PASSWORD: testing
+
+  

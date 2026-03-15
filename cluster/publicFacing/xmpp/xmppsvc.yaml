@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: xmpp-service
+  namespace: xmpp
+spec:
+  type: LoadBalancer
+  selector:
+    app: xmpp
+  ports:
+  - port: 5222
+    targetPort: 5222
