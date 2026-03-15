@@ -13,4 +13,4 @@ spec:
     - name: ricochet-service
       port: 8081
   tls: 
-    secretName: wildcard-cert
+    secretName: ricochet-cert

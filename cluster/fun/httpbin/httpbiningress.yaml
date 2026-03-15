@@ -13,4 +13,4 @@ spec:
     - name: httpbin-service
       port: 80
   tls: 
-    secretName: wildcard-cert
+    secretName: httpbin-cert

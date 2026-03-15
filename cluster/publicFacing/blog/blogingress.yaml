@@ -14,4 +14,4 @@ spec:
     - name: blog-service
       port: 4321
   tls: 
-    secretName: central-cert
+    secretName: blog-cert
