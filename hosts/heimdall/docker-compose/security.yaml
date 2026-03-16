@@ -1,0 +1,20 @@
+services:
+  headscale:
+    image: docker.io/headscale/headscale
+    restart: unless-stopped
+    container_name: headscale
+    read_only: true
+    tmpfs:
+      - /var/run/headscale
+    ports:
+      - "0.0.0.0:8080:8080"
+      - "0.0.0.0:3478:3478/udp"
+      - "0.0.0.0:3478:3478"
+      - "0.0.0.0:50443:50443"
+      - "0.0.0.0:9090:9090"
+    volumes:
+      - /etc/docker-configs/headscale/config/:/etc/headscale:ro
+      - /etc/docker-configs/headscale/lib:/var/lib/headscale
+    command: serve
+    healthcheck:
+        test: ["CMD", "headscale", "health"]
