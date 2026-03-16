@@ -46,6 +46,12 @@
           ./node-configs/cerberus-2.nix
         ];
       };
+      heimdall = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = commonModules ++ [
+          ./vps.nix
+        ]
+      }
     };
   };
 }
