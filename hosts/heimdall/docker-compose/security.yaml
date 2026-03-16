@@ -1,5 +1,40 @@
-services:
+services: 
+  traefik:
+    networks:
+      - proxy
+    image: traefik
+    container_name: traefik
+    command:
+      - "--api.insecure=false"
+      - "--api.dashboard=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=proxy"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--entryPoints.websecure.http.tls=true"
+      - "--serversTransport.insecureSkipVerify=true"  
+      - "--certificatesresolvers.le.acme.email=caffeinatedope@proton.me"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json" # Path inside container volume
+      - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - letsencrypt:/letsencrypt
+
   headscale:
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.headscale.rule=Host(`headscale.caffeinatedope.net`)"
+      - "traefik.http.routers.headscale.entrypoints=websecure"
+      - "traefik.http.services.headscale.loadbalancer.server.port=8080"
+      - "traefik.http.routers.headscale.tls.certresolver=le"
+      - "traefik.http.routers.headscale.tls=true"
     image: docker.io/headscale/headscale
     restart: unless-stopped
     container_name: headscale
@@ -7,14 +42,35 @@ services:
     tmpfs:
       - /var/run/headscale
     ports:
-      - "0.0.0.0:8080:8080"
-      - "0.0.0.0:3478:3478/udp"
-      - "0.0.0.0:3478:3478"
-      - "0.0.0.0:50443:50443"
-      - "0.0.0.0:9090:9090"
+      - "3478:3478/udp"
+      - "3478:3478"
+      - "50443:50443"
+      - "9090:9090"
     volumes:
-      - /etc/docker-configs/headscale/config/:/etc/headscale:ro
-      - /etc/docker-configs/headscale/lib:/var/lib/headscale
+      - /etc/docker-configs/headscale/:/etc/headscale:ro
+      - headscale-lib:/var/lib/headscale
     command: serve
     healthcheck:
         test: ["CMD", "headscale", "health"]
+
+  headscale-ui:
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.headscale-ui.rule=Host(`headscale.caffeinatedope.net`) && PathPrefix(`/web`)"
+      - "traefik.http.routers.headscale-ui.entrypoints=websecure"
+      - "traefik.http.services.headscale-ui.loadbalancer.server.port=8080"
+      - "traefik.http.routers.headscale-ui.tls.certresolver=le"
+      - "traefik.http.routers.headscale-ui.tls=true"
+    image: ghcr.io/gurucomputing/headscale-ui:latest
+    restart: unless-stopped
+    container_name: headscale-ui
+
+volumes:
+  headscale-lib:
+  letsencrypt:
+
+networks:
+  proxy:
+    name: proxy

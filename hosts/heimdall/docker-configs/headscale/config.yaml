@@ -10,7 +10,7 @@
 #
 # https://myheadscale.example.com:443
 #
-server_url: http://hs.caffeinatedope.net:8080
+server_url: https://headscale.caffeinatedope.net:443
 
 # Address to listen to / bind to on the server
 #

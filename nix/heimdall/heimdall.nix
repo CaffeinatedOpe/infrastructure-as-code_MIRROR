@@ -18,9 +18,9 @@
       }];
     };
   };
-  systemd.services.my-docker-compose = {
+  systemd.services.security-compose = {
     script = ''
-      docker-compose -f ${../../hosts/heimdall/docker-compose/security.yaml}
+      ${pkgs.docker-compose}/bin/docker-compose -f ${../../hosts/heimdall/docker-compose/security.yaml} up
     '';
     wantedBy = [ "multi-user.target" ];
     after = ["docker.service" "docker.socket"];
