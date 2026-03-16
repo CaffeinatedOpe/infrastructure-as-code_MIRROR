@@ -22,24 +22,27 @@
         home-manager.useUserPackages = true;
         home-manager.users.lucy = ./home.nix;
       }
+    ];
+    cerberusModules = commonModules ++ [
+      ./cerberus/shared.nix
     ]; in {  
       cerberus-0 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = commonModules ++ [
-          ./cerberus-init/config.nix
+        modules = cerberusModules ++ [
+          ./cerberus/cerberus-init/config.nix
         ];
       };
       cerberus-1 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = commonModules ++ [
-          ./cerberus-worker/config.nix
+        modules = cerberusModules ++ [
+          ./cerberus/cerberus-worker/config.nix
           ./node-configs/cerberus-1.nix
         ];
       };
       cerberus-2 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = commonModules ++ [
-          ./cerberus-worker/config.nix
+        modules = cerberusModules ++ [
+          ./cerberus/cerberus-worker/config.nix
           ./node-configs/cerberus-2.nix
         ];
       };

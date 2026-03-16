@@ -6,7 +6,5 @@ metadata:
 data:
   LOCAL: caffeinatedope
   DOMAIN: xmpp.caffeinatedope.net
-  PROSODY_NETWORK_HOSTNAME: xmpp.caffeinatedope.net
+  PROSODY_VIRTUAL_HOSTS: xmpp.caffeinatedope.net
   PASSWORD: testing
-
-  

@@ -11,7 +11,7 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
   # Bootloader.
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -21,37 +21,14 @@
   };
 
   sops = {
-      defaultSopsFile = ./secrets/secrets.yaml;
-      age.keyFile = "/var/lib/sops-nix/key.txt";
-      secrets.password.neededForUsers = true;
-      secrets.k3s-token = { };
+    defaultSopsFile = ./secrets/secrets.yaml;
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+    secrets.password.neededForUsers = true;
+    secrets.k3s-token = { };
   };
   security.sudo.wheelNeedsPassword = false;
 
-  hardware.graphics = { 
-    enable = true;
-    extraPackages = with pkgs; [ 
-      vpl-gpu-rt
-      intel-media-driver 
-      libvdpau-va-gl
-    ];
-  };
-
   environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-  networking.firewall.allowedTCPPorts = [
-    6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
-    2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
-    2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
-  ];
-  networking.firewall.allowedUDPPorts = [
-    8472 # k3s, flannel: required if using multi-node for inter-node networking
-  ];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -96,14 +73,14 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lucy = {
     isNormalUser = true;
-    description = "Lucy Fiedler";
+    description = "Lucy";
     extraGroups = [ "wheel" "docker" "plugdev" ];
     hashedPasswordFile = config.sops.secrets.password.path;
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHLwnw2cHE9/HeSkdJzs3zq76eZPPX4aKGj/zCu4joWM lucy"
-    ];	
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHLwnw2cHE9/HeSkdJzs3zq76eZPPX4aKGj/zCu4joWM lucy"
+    ];
   };
 
   programs = rec {
@@ -112,23 +89,12 @@
   };
 
   services = {
-    logind.settings.Login.HandlePowerKey = "ignore";
     rpcbind.enable = true;
-    xserver.videoDrivers = [ "i915" ];
     openssh = {
-        enable = true;
-        settings.PasswordAuthentication = false;
-  	settings.KbdInteractiveAuthentication = false;
-    };
-    k3s = {
       enable = true;
-      role = "server";
-      tokenFile = config.sops.secrets.k3s-token.path;
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
     };
-    openiscsi.enable = true;
-    openiscsi.name = "${config.networking.hostName}";
   };
-
   system.stateVersion = "25.11";
-
 }
