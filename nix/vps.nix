@@ -1,13 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
-let
-  unstable = import (builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/tarball/81b871c9b50f3c7115d78a45af0b42d7406abc81";
-    sha256 = "sha256:1vdxly2cjcq35ih1mc9idc8bjk6qn3n499hkmfk6d6anhszmnc18";
-  })
-  # reuse the current configuration
-    { config = config.nixpkgs.config; };
-in {
-  environment.systemPackages = with pkgs; [ unstable.headscale ];
+{
+	networking.firewall.enable = false;
+  environment.systemPackages = with pkgs; [ headscale ];
   networking.hostName = "heimdall";
   networking.firewall = {
     checkReversePath = "loose";
