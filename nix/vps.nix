@@ -20,7 +20,7 @@
       settings = {
         server_url = "https://headscale.caffeinatedope.net:443";
         derp.enabled = true;
-      }
-    }
-  }
-}
+      };
+    };
+  };
+};
