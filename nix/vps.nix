@@ -14,7 +14,7 @@
   services = {
 		tailscale.enable = true;
     headscale = {
-      enabled = true;
+      enable = true;
       address = "0.0.0.0";
 			port = 8080;
       settings = {
