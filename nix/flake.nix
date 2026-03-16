@@ -49,7 +49,7 @@
       heimdall = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = commonModules ++ [
-          ./vps.nix
+          ./heimdall/heimdall.nix
         ];
       };
     };
