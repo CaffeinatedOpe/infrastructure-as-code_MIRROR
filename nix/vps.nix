@@ -16,7 +16,7 @@
     headscale = {
       enabled = true;
       address = "0.0.0.0";
-			port = 8080
+			port = 8080;
       settings = {
         server_url = "https://headscale.caffeinatedope.net:443";
         derp.enabled = true;
