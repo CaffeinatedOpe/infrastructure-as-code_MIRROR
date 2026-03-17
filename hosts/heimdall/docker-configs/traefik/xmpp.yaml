@@ -1,0 +1,24 @@
+http:
+  routers:
+    xmpp-router:
+      entryPoints:
+      - xmpp
+      service: xmpp-service
+      rule: Host(`xmpp.caffeinatedope.net`)
+    xmpp-router-secure:
+      entryPoints:
+      - xmppsecure
+      service: xmpp-service-secure
+      rule: Host(`xmpp.caffeinatedope.net`)
+
+  services:
+    xmpp-service:
+      loadBalancer:
+        servers:
+        - url: tcp://prosody
+          port: 5222
+    xmpp-service-secure:
+      loadBalancer:
+        servers:
+        - url: tcp://prosody
+          port: 5223

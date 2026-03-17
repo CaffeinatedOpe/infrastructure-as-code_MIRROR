@@ -43,9 +43,7 @@ spec:
         - name: TS_EXTRA_ARGS
           value: "--login-server=https://headscale.caffeinatedope.net --advertise-exit-node"
         - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
+          value: prosody
         - name: POD_UID
           valueFrom:
             fieldRef:
