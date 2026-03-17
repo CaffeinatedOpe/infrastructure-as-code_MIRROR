@@ -1,4 +1,4 @@
-services: 
+services:
   traefik:
     networks:
       - proxy
@@ -12,18 +12,14 @@ services:
       - "--providers.docker.network=proxy"
       - "--entryPoints.web.address=:80"
       - "--entryPoints.websecure.address=:443"
-      - "--entryPoints.xmpp.address=:5222"
-      - "--entryPoints.xmppsecure=:5223"
       - "--entryPoints.websecure.http.tls=true"
-      - "--serversTransport.insecureSkipVerify=true"  
+      - "--serversTransport.insecureSkipVerify=true"
       - "--certificatesresolvers.le.acme.email=caffeinatedope@proton.me"
       - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json" # Path inside container volume
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
-      - "--providers.file.directory=/etc/traefik/dynamic"            
     ports:
       - "80:80"
       - "443:443"
-      - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/docker-configs/traefik:/etc/traefik/dynamic
@@ -55,7 +51,7 @@ services:
       - headscale-lib:/var/lib/headscale
     command: serve
     healthcheck:
-        test: ["CMD", "headscale", "health"]
+      test: ["CMD", "headscale", "health"]
 
   headscale-ui:
     networks:
@@ -70,26 +66,8 @@ services:
     image: ghcr.io/gurucomputing/headscale-ui:latest
     restart: unless-stopped
     container_name: headscale-ui
-  tailscale:
-    container_name: tailscale
-    hostname: tailscale
-    image: tailscale/tailscale:stable
-    ports:
-    - 40000:40000
-    - 41641:41641
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_EXTRA_ARGS=--login-server=https://headscale.caffeinatedope.net
-    volumes:
-      - tailscale:/var/lib/tailscale
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    cap_add:
-      - net_admin
-      - sys_module
-    privileged: true
+
 volumes:
-  tailscale:
   headscale-lib:
   letsencrypt:
 

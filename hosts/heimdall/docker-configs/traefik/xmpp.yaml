@@ -15,10 +15,10 @@ http:
     xmpp-service:
       loadBalancer:
         servers:
-        - url: tcp://prosody
+        - url: http://prosody.cf.service
           port: 5222
     xmpp-service-secure:
       loadBalancer:
         servers:
-        - url: tcp://prosody
+        - url: https://prosody.cf.service
           port: 5223

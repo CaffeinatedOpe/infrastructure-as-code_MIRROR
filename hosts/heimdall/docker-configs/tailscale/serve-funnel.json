@@ -1,0 +1,19 @@
+{
+  "TCP": {
+    "5222": {
+      "HTTPS": false
+    }
+  },
+  "Web": {
+    "prosody.cf.service:5222": {
+      "Handlers": {
+        "/": {
+          "Proxy": "http://0.0.0.0:5222"
+        }
+      }
+    }
+  },
+  "AllowFunnel": {
+    "prosody.cf.service:5222": true
+  }
+}

@@ -18,11 +18,24 @@
       }];
     };
   };
-  systemd.services.security-compose = {
-    script = ''
-      ${pkgs.docker-compose}/bin/docker-compose -f ${../../hosts/heimdall/docker-compose/security.yaml} up
-    '';
-    wantedBy = [ "multi-user.target" ];
-    after = ["docker.service" "docker.socket"];
+  systemd = {
+    services.security-compose = {
+      script = ''
+        ${pkgs.docker-compose}/bin/docker-compose -f ${
+          ../../hosts/heimdall/docker-compose/security.yaml
+        } up
+      '';
+      wantedBy = [ "multi-user.target" ];
+      after = [ "docker.service" "docker.socket" ];
+    };
+    services.tailscale-forwarding-compose = {
+      script = ''
+        ${pkgs.docker-compose}/bin/docker-compose -f ${
+          ../../hosts/heimdall/docker-compose/tailscale-forwarding.yaml
+        } up
+      '';
+      wantedBy = [ "multi-user.target" ];
+      after = [ "docker.service" "docker.socket" ];
+    };
   };
 }

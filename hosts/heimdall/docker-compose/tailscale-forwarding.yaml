@@ -1,0 +1,53 @@
+services:
+  tailscale:
+    networks:
+      - tailscale
+    container_name: tailscale
+    hostname: tailscale
+    image: tailscale/tailscale:stable
+    ports:
+      - 40000:40000
+      - 41641:41641
+      - 5222:5222
+      - 5333:5333
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_EXTRA_ARGS=--login-server=https://headscale.caffeinatedope.net --advertise-tags=tag:container --advertise-exit-node
+      - TS_USERSPACE=false
+      - TS_ACCEPT_DNS=true
+      - TS_HOSTNAME=heimdall
+      - TS_DEBUG_FIREWALL_MODE=nftables
+    volumes:
+      - tailscale:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+    privileged: true
+
+  traefik-ts:
+    network_mode: service:tailscale
+    image: traefik
+    container_name: traefik-ts
+    command:
+      - "--api.insecure=false"
+      - "--api.dashboard=false"
+      - "--entryPoints.xmpp.address=:5222"
+      - "--entryPoints.xmppsecure.address=:5223"
+      - "--entryPoints.websecure.http.tls=true"
+      - "--serversTransport.insecureSkipVerify=true"
+      - "--certificatesresolvers.ts-le.acme.email=caffeinatedope@proton.me"
+      - "--certificatesresolvers.ts-le.acme.storage=/letsencrypt/acme.json" # Path inside container volume
+      - "--certificatesresolvers.ts-le.acme.httpchallenge.entrypoint=xmpp"
+      - "--providers.file.directory=/etc/traefik/dynamic"
+    volumes:
+      - /etc/docker-configs/traefik:/etc/traefik/dynamic
+      - le-ts:/letsencrypt
+
+volumes:
+  tailscale:
+  le-ts:
+
+networks:
+  tailscale:
+    name: tailscale
