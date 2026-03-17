@@ -15,7 +15,7 @@ spec:
       labels:
         app: prosody
     spec:
-      serviceAccountName: "tailscale"
+      serviceAccountName: tailscale
       containers:
       - name: prosody
         image: prosodyim/prosody:13.0
