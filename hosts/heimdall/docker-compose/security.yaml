@@ -35,7 +35,7 @@ services:
       - "traefik.http.services.headscale.loadbalancer.server.port=8080"
       - "traefik.http.routers.headscale.tls.certresolver=le"
       - "traefik.http.routers.headscale.tls=true"
-    image: docker.io/headscale/headscale
+    image: docker.io/headscale/headscale:v0.27
     restart: unless-stopped
     container_name: headscale
     read_only: true
