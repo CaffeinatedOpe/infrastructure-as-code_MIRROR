@@ -34,6 +34,8 @@ spec:
           value: "false"
         - name: TS_DEBUG_FIREWALL_MODE
           value: auto
+        - name: TS_HOSTNAME
+          value: prosody
         - name: TS_AUTHKEY
           valueFrom:
             secretKeyRef:
@@ -43,7 +45,9 @@ spec:
         - name: TS_EXTRA_ARGS
           value: "--login-server=https://headscale.caffeinatedope.net --advertise-exit-node"
         - name: POD_NAME
-          value: prosody
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         - name: POD_UID
           valueFrom:
             fieldRef:
