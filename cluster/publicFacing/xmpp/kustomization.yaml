@@ -7,3 +7,4 @@ resources:
   - xmppsvc.yaml
   - xmppingress.yaml
   - xmpp-configmap.yaml
+  - tailscale.yaml

@@ -4,7 +4,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: tailscale
-  namespace: default
+  namespace: xmpp
 rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["secrets"]
@@ -24,7 +24,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: tailscale
-  namespace: default
+  namespace: xmpp
 subjects:
 - kind: ServiceAccount
   name: "tailscale"
@@ -39,4 +39,4 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: tailscale
-  namespace: default
+  namespace: xmpp
