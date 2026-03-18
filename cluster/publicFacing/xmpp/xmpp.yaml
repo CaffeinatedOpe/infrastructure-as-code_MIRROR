@@ -34,9 +34,12 @@ spec:
                 name: xmpp-userconfig
                 key: pass
           - name: PROSODY_ENABLE_MODULES
-            value: register,
-          
+            value: register
         volumeMounts:
+        - name: config-volume
+          readOnly: true
+          mountPath: "/etc/prosody/config.dist"
+          subPath: "config.dist"
         - name: cert-volume
           readOnly: true
           mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.crt"
@@ -45,9 +48,6 @@ spec:
           readOnly: true
           mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
           subPath: "tls.key" 
-        - name: config-volume
-          readOnly: true
-          mountPath: "/etc/prosody/"
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"
