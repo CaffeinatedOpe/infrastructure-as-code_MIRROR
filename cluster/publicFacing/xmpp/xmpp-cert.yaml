@@ -8,7 +8,6 @@ spec:
   secretName: xmpp-cert
   issuerRef:
     name: cf-cluster-Issuer
-    namespace: cert-manages
     kind: ClusterIssuer
   dnsNames:
     - xmpp.caffeinatedope.net
