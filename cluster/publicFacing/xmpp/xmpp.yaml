@@ -21,9 +21,21 @@ spec:
         image: prosodyim/prosody:13.0
         ports:
         - containerPort: 5222
-        envFrom:
-          - configMapRef:
-              name: xmpp-configmap
+        env:
+          - name: LOCAL
+            value: caffeinatedope
+          - name: DOMAIN
+            value: xmpp.caffeinatedope.net
+          - name: PROSODY_VIRTUAL_HOSTS
+            value: xmpp.caffeinatedope.net
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: xmpp-userconfig
+                key: pass
+          - name: PROSODY_ENABLE_MODULES
+            value: register,
+          
         volumeMounts:
         - name: cert-volume
           readOnly: true
@@ -33,6 +45,9 @@ spec:
           readOnly: true
           mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
           subPath: "tls.key" 
+        - name: config-volume
+          readOnly: true
+          mountPath: "/etc/prosody/"
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"
@@ -64,6 +79,9 @@ spec:
         securityContext:
           privileged: true
       volumes:
-       - name: cert-volume
-         secret:
-           secretName: xmpp-cert
+        - name: cert-volume
+          secret:
+            secretName: xmpp-cert
+        - name: config-volume
+          configMap:
+            name: xmpp-configmap
