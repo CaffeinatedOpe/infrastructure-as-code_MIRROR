@@ -34,11 +34,11 @@ spec:
                 name: xmpp-userconfig
                 key: pass
           - name: PROSODY_ENABLE_MODULES
-            value: register,motd,welcome
+            value: register,motd,welcome,watchregistrations
         volumeMounts:
         - name: config-volume
           readOnly: true
-          mountPath: "/etc/prosody/custom.cfg.lua"
+          mountPath: "/etc/prosody/conf.d/custom.cfg.lua"
           subPath: "config.dist"
         - name: cert-volume
           readOnly: true

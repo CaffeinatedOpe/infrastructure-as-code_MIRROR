@@ -6,5 +6,6 @@ metadata:
 data:
   config.dist: |
     admins = { "caffeinatedope" }
-    allow_registration = true -- Allow users to register new accounts
+    allow_registration = true
+    registration_invite_only = false
     motd_text = [[ Let's all love Lain ]]
