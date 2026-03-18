@@ -30,7 +30,7 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.headscale.rule=Host(`headscale.caffeinatedope.net`)"
+      - "traefik.http.routers.headscale.rule=Host(`headscale.caffeinatedope.net`) && PathPrefix(`/`)"
       - "traefik.http.routers.headscale.entrypoints=websecure"
       - "traefik.http.services.headscale.loadbalancer.server.port=8080"
       - "traefik.http.routers.headscale.tls.certresolver=le"

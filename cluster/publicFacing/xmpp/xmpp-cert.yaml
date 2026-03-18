@@ -7,7 +7,8 @@ spec:
   # Secret names are always required.
   secretName: xmpp-cert
   issuerRef:
-    name: cf-cluster-issuer
+    name: cf-cluster-Issuer
+    namespace: cert-manages
     kind: ClusterIssuer
   dnsNames:
     - xmpp.caffeinatedope.net
