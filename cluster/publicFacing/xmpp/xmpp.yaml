@@ -48,6 +48,8 @@ spec:
           readOnly: true
           mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
           subPath: "tls.key" 
+        - name: datastore 
+          mountPath: "/var/lib/prosody"
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"
@@ -85,3 +87,6 @@ spec:
       - name: config-volume
         configMap:
           name: xmpp-configmap
+      - name: datastore
+        persistentVolumeClaim:
+          claimName: xmpp-store
