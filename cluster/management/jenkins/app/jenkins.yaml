@@ -68,4 +68,4 @@ spec:
       targets: "cluster/management/jenkins/seed-jobs/*.groovy"
       description: "Infrastructure As Code repo"
       repositoryBranch: master
-      repositoryUrl: https://github.com/CaffeinatedOpe/infrastructure-as-code
+      repositoryUrl: https://codeberg.org/CaffeinatedOpe/infrastructure-as-code
