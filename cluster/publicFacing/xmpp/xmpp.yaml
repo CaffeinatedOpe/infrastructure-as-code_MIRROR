@@ -49,6 +49,7 @@ spec:
           mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
           subPath: "tls.key" 
         - name: datastore 
+          readOnly: false
           mountPath: "/var/lib/prosody"
       - name: ts-sidecar
         imagePullPolicy: Always
