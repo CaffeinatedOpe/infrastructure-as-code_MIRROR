@@ -34,7 +34,7 @@ spec:
                 name: xmpp-userconfig
                 key: pass
           - name: PROSODY_ENABLE_MODULES
-            value: register,motd,welcome,watchregistrations
+            value: register,motd,welcome,watchregistrations,mam
         volumeMounts:
         - name: config-volume
           readOnly: true

@@ -9,3 +9,4 @@ data:
     allow_registration = true
     registration_invite_only = false
     motd_text = [[ Let's all love Lain ]]
+    external_addresses = { "178.156.246.91" } 
