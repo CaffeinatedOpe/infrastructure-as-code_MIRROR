@@ -24,6 +24,10 @@ spec:
         envFrom:
           - configMapRef:
               name: xmpp-configmap
+        volumeMounts:
+        - name: cert-volume
+          readOnly: true
+          mountPath: "/certs"
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"
@@ -54,3 +58,7 @@ spec:
               fieldPath: metadata.uid
         securityContext:
           privileged: true
+      volumes:
+       - name: cert-volume
+         secret:
+           secretName: xmpp-cert

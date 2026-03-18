@@ -5,6 +5,5 @@ resources:
   - xmpp-cert.yaml
   - xmpp.yaml
   - xmppsvc.yaml
-  - xmppingress.yaml
   - xmpp-configmap.yaml
   - tailscale.yaml

@@ -10,4 +10,9 @@ spec:
     app: prosody
   ports:
   - port: 5222
+    name: insecure
+    targetPort: 5222
+  ports:
+  - port: 5222
+    name: secure
     targetPort: 5222
