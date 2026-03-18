@@ -38,7 +38,7 @@ spec:
         volumeMounts:
         - name: config-volume
           readOnly: true
-          mountPath: "/etc/prosody/prosody.cfg.lua"
+          mountPath: "/etc/prosody/custom.cfg.lua"
           subPath: "config.dist"
         - name: cert-volume
           readOnly: true
