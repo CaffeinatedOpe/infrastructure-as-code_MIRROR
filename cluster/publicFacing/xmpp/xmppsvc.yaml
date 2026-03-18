@@ -12,7 +12,6 @@ spec:
   - port: 5222
     name: insecure
     targetPort: 5222
-  ports:
-  - port: 5222
+  - port: 5223
     name: secure
-    targetPort: 5222
+    targetPort: 5223
