@@ -27,11 +27,11 @@ spec:
         volumeMounts:
         - name: cert-volume
           readOnly: true
-          mountPath: "/etc/certs/xmpp.caffeinatedope.net.crt"
+          mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.crt"
           subPath: "tls.crt"
         - name: cert-volume
           readOnly: true
-          mountPath: "/etc/certs/xmpp.caffeinatedope.net.key"
+          mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
           subPath: "tls.key" 
       - name: ts-sidecar
         imagePullPolicy: Always
