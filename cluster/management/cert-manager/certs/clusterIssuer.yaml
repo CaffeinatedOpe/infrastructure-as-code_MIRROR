@@ -5,10 +5,10 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: arfiedler1114@gmail.com
+    email: caffeinatedope@proton.me
     privateKeySecretRef:
       name: example-issuer-account-key
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
     - selector:
         dnsNames:
@@ -16,7 +16,7 @@ spec:
         - '*.caffeinatedope.net'
       dns01:
         cloudflare:
-          email: arfiedler1114@gmail.com
+          email: caffeinatedope@proton.me
           apiTokenSecretRef:
             name: cloudflare-api-token-secret
             key: api-token
