@@ -27,7 +27,12 @@ spec:
         volumeMounts:
         - name: cert-volume
           readOnly: true
-          mountPath: "/etc/certs"
+          mountPath: "/etc/certs/certificate.crt"
+          subPath: "tls.crt"
+        - name: cert-volume
+          readOnly: true
+          mountPath: "/etc/certs/certificate.key"
+          subPath: "tls.key" 
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"
