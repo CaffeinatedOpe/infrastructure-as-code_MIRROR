@@ -10,4 +10,4 @@ spec:
     name: cf-cluster-issuer
     kind: ClusterIssuer
   dnsNames:
-    - xmpp.caffeinatedope.net
+    - '*.caffeinatedope.net'
