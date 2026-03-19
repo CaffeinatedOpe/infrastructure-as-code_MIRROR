@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: blog
-        image: codeberg.org/caffeinatedope/blog:latest@sha256:97a77f05e3d66d3d181646d2061fae42dad0159d4c1fe969f0f20b416507fc04 # {"$imagepolicy": "blog:blog-imagepolicy"}
+        image: codeberg.org/caffeinatedope/blog:latest@sha256:f9c61964f28804593170874ebae33e490c1493a60a2d4daa22cc604d55fa5c92 # {"$imagepolicy": "blog:blog-imagepolicy"}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 4321
