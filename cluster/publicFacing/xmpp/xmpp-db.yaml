@@ -1,0 +1,9 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: xmpp-postgres
+  namespace: xmpp
+spec:
+  instances: 3
+  storage:
+    size: 10Gi
