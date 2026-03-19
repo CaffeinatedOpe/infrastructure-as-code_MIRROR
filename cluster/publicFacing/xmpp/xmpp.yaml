@@ -34,7 +34,7 @@ spec:
                 name: xmpp-userconfig
                 key: pass
           - name: PROSODY_ENABLE_MODULES
-            value: register,motd,welcome,watchregistrations,mam
+            value: register,motd,welcome,watchregistrations,mam,muc,cloud_notify
         volumeMounts:
         - name: config-volume
           readOnly: true
@@ -50,7 +50,7 @@ spec:
           subPath: "tls.key" 
         - name: datastore 
           readOnly: false
-          mountPath: "/var/lib/prosody"
+          mountPath: "/var/lib/tmp"
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"

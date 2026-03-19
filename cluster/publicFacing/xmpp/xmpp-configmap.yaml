@@ -10,3 +10,7 @@ data:
     registration_invite_only = false
     motd_text = [[ Let's all love Lain ]]
     external_addresses = { "178.156.246.91" } 
+    
+    Component "conference.xmpp.caffeinatedope.net" "muc"
+    name = "chatroom"
+    max_history_messages = 100
