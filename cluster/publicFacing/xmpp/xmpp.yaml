@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prosody-deployment
+  name: xmpp-deployment
   labels:
-    app: prosody
+    app: xmpp
   namespace: xmpp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prosody
+      app: xmpp
   template:
     metadata:
       labels:
-        app: prosody
+        app: xmpp
     spec:
       serviceAccountName: tailscale
       containers:
@@ -24,8 +24,6 @@ spec:
         - containerPort: 5223
         - containerPort: 5269
         - containerPort: 5443
-        command: ["prosody"]
-        args: ["-F"]
         env:
           - name: EJABBERD_MACRO_ADMIN
             value: caffeinatedope@xmpp.caffeinatedope.net
