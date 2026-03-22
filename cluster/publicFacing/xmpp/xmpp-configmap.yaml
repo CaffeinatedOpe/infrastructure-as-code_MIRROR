@@ -5,7 +5,8 @@ metadata:
   namespace: xmpp
 data:
   ejabberd.yaml: |
-    hosts: xmpp.caffeinatedope.net
+    hosts: 
+      - xmpp.caffeinatedope.net
     certfiles:
       - /etc/ssl/tls-combined.pem
     modules:
