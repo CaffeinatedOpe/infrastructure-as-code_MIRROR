@@ -1,17 +1,18 @@
 ---
+# Namespace for CSI driver
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: storage
+  name: truenas-csi
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: storage
-  namespace: storage
+  name: truenas-csi
+  namespace: truenas-csi
 spec:
-  interval: 5m
-  path: ./cluster/management/storage
+  interval: 10m0s
+  path: ./cluster/management/truenas-csi
   prune: true
   sourceRef:
     kind: GitRepository

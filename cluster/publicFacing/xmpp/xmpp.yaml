@@ -16,6 +16,23 @@ spec:
         app: xmpp
     spec:
       serviceAccountName: tailscale
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 9000
+        fsGroupChangePolicy: "Always"
+      initContainers:
+        - name: take-data-dir-ownership
+          image: alpine:3
+          command:
+          - chown
+          - -R
+          - 9000:9000
+          - /var/lib/data
+          volumeMounts:
+          - name: datastore
+            mountPath: /var/lib/data
+
       containers:
       - name: xmpp
         image: ghcr.io/processone/ejabberd
