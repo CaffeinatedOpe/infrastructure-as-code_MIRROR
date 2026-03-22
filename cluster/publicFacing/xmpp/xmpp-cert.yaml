@@ -11,3 +11,5 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - '*.caffeinatedope.net'
+  additionalOutputFormats:
+  - type: CombinedPEM

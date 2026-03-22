@@ -10,6 +10,7 @@ services:
       - 41641:41641/udp
       - 5222:5222
       - 5223:5223
+      - 5269:5269
     environment:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_EXTRA_ARGS=--login-server=https://headscale.caffeinatedope.net --advertise-tags=tag:container --advertise-exit-node
@@ -34,6 +35,7 @@ services:
       - "--api.dashboard=false"
       - "--entryPoints.xmpp.address=:5222"
       - "--entryPoints.xmppsecure.address=:5223"
+      - "--entryPoints.xmpp-s2s.address=:5269"
       - "--serversTransport.insecureSkipVerify=true"
       - "--providers.file.directory=/etc/traefik/dynamic"
       - "--log.level=INFO"

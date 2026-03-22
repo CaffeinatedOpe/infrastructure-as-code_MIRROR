@@ -10,13 +10,23 @@ tcp:
         - xmppsecure
       service: xmpp-service-secure
       rule: "HostSNI(`*`)"
+    xmpp-s2s-router:
+      entryPoints:
+        - xmpp-s2s
+      service: xmpp-service
+      rule: "HostSNI(`*`)"
 
   services:
     xmpp-service:
       loadBalancer:
         servers:
-        - address: "prosody.cf.service:5222"
+        - address: "xmpp.cf.service:5222"
     xmpp-service-secure:
       loadBalancer:
         servers:
-        - address: "prosody.cf.service:5223"
+        - address: "xmpp.cf.service:5223"
+    services:
+    xmpp-s2s:
+      loadBalancer:
+        servers:
+        - address: "xmpp.cf.service:5269"

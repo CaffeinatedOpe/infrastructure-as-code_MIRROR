@@ -17,40 +17,39 @@ spec:
     spec:
       serviceAccountName: tailscale
       containers:
-      - name: prosody
-        image: prosodyim/prosody:13.0
+      - name: xmpp
+        image: ghcr.io/processone/ejabberd
         ports:
         - containerPort: 5222
+        - containerPort: 5223
+        - containerPort: 5269
+        - containerPort: 5443
+        command: ["prosody"]
+        args: ["-F"]
         env:
-          - name: LOCAL
-            value: caffeinatedope
-          - name: DOMAIN
+          - name: EJABBERD_MACRO_ADMIN
+            value: caffeinatedope@xmpp.caffeinatedope.net
+          - name: EJABBERD_MACRO_HOST
             value: xmpp.caffeinatedope.net
           - name: PROSODY_VIRTUAL_HOSTS
             value: xmpp.caffeinatedope.net
-          - name: PASSWORD
+          - name: REGISTER_ADMIN_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: xmpp-userconfig
                 key: pass
-          - name: PROSODY_ENABLE_MODULES
-            value: register,motd,welcome,watchregistrations,mam,muc,cloud_notify
         volumeMounts:
         - name: config-volume
           readOnly: true
-          mountPath: "/etc/prosody/conf.d/custom.cfg.lua"
-          subPath: "config.dist"
+          mountPath: "/opt/ejabberd/conf/ejabberd.yml"
+          subPath: "ejabberd.yaml"
         - name: cert-volume
           readOnly: true
-          mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.crt"
-          subPath: "tls.crt"
-        - name: cert-volume
-          readOnly: true
-          mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
-          subPath: "tls.key" 
+          mountPath: "/etc/ssl/"
         - name: datastore 
           readOnly: false
-          mountPath: "/var/lib/tmp"
+          mountPath: "/opt/ejabberd/database"
+
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"
