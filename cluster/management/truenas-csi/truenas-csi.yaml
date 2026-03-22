@@ -141,7 +141,7 @@ metadata:
 data:
   truenasURL: "wss://192.168.7.155/api/current"
   truenasInsecure: "true"  # Set to "true" for self-signed certificates, "false" or remove for valid certs
-  defaultPool: "main/kubernetes"
+  defaultPool: "main"
   nfsServer: "192.168.7.155"
   iscsiPortal: "192.168.7.155:3260"
   iscsiIQNBase: "iqn.2000-01.io.truenas"  # Optional: Custom IQN prefix (default: iqn.2000-01.io.truenas)
