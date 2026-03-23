@@ -5,15 +5,20 @@ tcp:
         - xmpp
       service: xmpp-service
       rule: "HostSNI(`*`)"
-    xmpp-router-secure:
-      entryPoints:
-        - xmppsecure
-      service: xmpp-service-secure
-      rule: "HostSNI(`*`)"
     xmpp-s2s-router:
       entryPoints:
         - xmpp-s2s
       service: xmpp-service
+      rule: "HostSNI(`*`)"
+    xmpp-router-http:
+      entryPoints:
+        - web
+      service: xmpp-http
+      rule: "HostSNI(`*`)"
+    xmpp-router-https:
+      entryPoints:
+        - websecure
+      service: xmpp-https
       rule: "HostSNI(`*`)"
 
   services:
@@ -21,11 +26,15 @@ tcp:
       loadBalancer:
         servers:
         - address: "xmpp.cf.service:5222"
-    xmpp-service-secure:
-      loadBalancer:
-        servers:
-        - address: "xmpp.cf.service:5223"
     xmpp-s2s:
       loadBalancer:
         servers:
         - address: "xmpp.cf.service:5269"
+    xmpp-http:
+      loadBalancer:
+        servers:
+        - address: "xmpp.cf.service:5280"
+    xmpp-https:
+      loadBalancer:
+        servers:
+        - address: "xmpp.cf.service:5281"

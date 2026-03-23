@@ -33,6 +33,8 @@ services:
     command:
       - "--api.insecure=false"
       - "--api.dashboard=false"
+      - "--entryPoints.web.address=:5280"
+      - "--entryPoints.websecure.address=:5281"
       - "--entryPoints.xmpp.address=:5222"
       - "--entryPoints.xmppsecure.address=:5223"
       - "--entryPoints.xmpp-s2s.address=:5269"

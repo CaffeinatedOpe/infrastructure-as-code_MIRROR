@@ -15,3 +15,9 @@ spec:
   - port: 5269
     name: s2s
     targetPort: 5269
+  - port: 5280
+    name: http
+    targetPort: 5280
+  - port: 5281
+    name: https
+    targetPort: 5281
