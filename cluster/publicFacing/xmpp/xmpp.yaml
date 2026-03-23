@@ -5,6 +5,8 @@ metadata:
   labels:
     app: xmpp
   namespace: xmpp
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
