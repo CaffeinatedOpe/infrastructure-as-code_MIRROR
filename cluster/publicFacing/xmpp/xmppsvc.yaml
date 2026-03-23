@@ -12,6 +12,6 @@ spec:
   - port: 5222
     name: insecure
     targetPort: 5222
-  - port: 5223
-    name: secure
-    targetPort: 5223
+  - port: 5269
+    name: s2s
+    targetPort: 5269
