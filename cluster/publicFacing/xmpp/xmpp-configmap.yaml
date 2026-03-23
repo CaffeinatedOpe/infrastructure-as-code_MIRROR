@@ -4,17 +4,13 @@ metadata:
   name: xmpp-configmap
   namespace: xmpp
 data:
-  ejabberd.yaml: |
-    hosts: 
-      - xmpp.caffeinatedope.net
-    certfiles:
-      - /etc/ssl/tls-combined.pem
-    modules:
-      mod_roster:    {}
-      mod_configure: {}
-      mod_disco:     {}
-      mod_private:   {}
-      mod_time:      {}
-      mod_last:      {}
-      mod_version:   {}
-      mod_adhoc: {}
+  config.dist: |
+    admins = { "caffeinatedope" }
+    allow_registration = true
+    registration_invite_only = false
+    external_addresses = { "178.156.246.91" } 
+    
+    Component "conference.xmpp.caffeinatedope.net" "muc"
+    Component "upload.xmpp.caffeinatedope.net" "http_file_share"
+    name = "chatroom"
+    max_history_messages = 100

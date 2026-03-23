@@ -16,43 +16,41 @@ spec:
         app: xmpp
     spec:
       serviceAccountName: tailscale
-      securityContext:
-        runAsUser: 9000
-        runAsGroup: 9000
-        fsGroup: 9000
-        fsGroupChangePolicy: "Always"
       containers:
       - name: xmpp
-        image: ghcr.io/processone/ejabberd
+        image: prosodyim/prosody:13.0
         ports:
         - containerPort: 5222
-        - containerPort: 5223
-        - containerPort: 5269
-        - containerPort: 5443
         env:
-          - name: EJABBERD_MACRO_ADMIN
-            value: caffeinatedope@xmpp.caffeinatedope.net
-          - name: EJABBERD_MACRO_HOST
+          - name: LOCAL
+            value: caffeinatedope
+          - name: DOMAIN
             value: xmpp.caffeinatedope.net
           - name: PROSODY_VIRTUAL_HOSTS
             value: xmpp.caffeinatedope.net
-          - name: REGISTER_ADMIN_PASSWORD
+          - name: PASSWORD
             valueFrom:
               secretKeyRef:
                 name: xmpp-userconfig
                 key: pass
+          - name: PROSODY_ENABLE_MODULES
+            value: register,welcome,watchregistrations,mam,cloud_notify
         volumeMounts:
         - name: config-volume
           readOnly: true
-          mountPath: "/opt/ejabberd/conf/ejabberd.yml"
-          subPath: "ejabberd.yaml"
+          mountPath: "/etc/prosody/conf.d/custom.cfg.lua"
+          subPath: "config.dist"
         - name: cert-volume
           readOnly: true
-          mountPath: "/etc/ssl/"
+          mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.crt"
+          subPath: "tls.crt"
+        - name: cert-volume
+          readOnly: true
+          mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
+          subPath: "tls.key" 
         - name: datastore 
           readOnly: false
-          mountPath: "/opt/ejabberd/database"
-
+          mountPath: "/var/lib/prosody"
       - name: ts-sidecar
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:latest"
@@ -64,7 +62,7 @@ spec:
         - name: TS_DEBUG_FIREWALL_MODE
           value: auto
         - name: TS_HOSTNAME
-          value: prosody
+          value: xmpp
         - name: TS_AUTHKEY
           valueFrom:
             secretKeyRef:
@@ -91,5 +89,6 @@ spec:
         configMap:
           name: xmpp-configmap
       - name: datastore
-        persistentVolumeClaim:
-          claimName: xmpp-store
+        nfs:
+          server: 192.168.7.155
+          path: /mnt/main/xmpp

@@ -25,7 +25,6 @@ tcp:
       loadBalancer:
         servers:
         - address: "xmpp.cf.service:5223"
-    services:
     xmpp-s2s:
       loadBalancer:
         servers:
