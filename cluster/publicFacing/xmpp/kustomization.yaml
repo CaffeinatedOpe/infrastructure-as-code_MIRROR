@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: xmpp
 resources:
   - xmpp-cert.yaml
-  - xmpp.yaml
+  - tailscale.yaml
   - xmppsvc.yaml
   - xmpp-configmap.yaml
-  - tailscale.yaml
+  - xmpp.yaml
