@@ -7,81 +7,81 @@ metadata:
   namespace: xmpp
   annotations:
     reloader.stakater.com/auto: "true"
-  spec:
-    serviceAccountName: tailscale
-    containers:
-    - name: xmpp
-      image: prosodyim/prosody:13.0
-      ports:
-      - containerPort: 5222
-      env:
-        - name: LOCAL
-          value: caffeinatedope
-        - name: DOMAIN
-          value: xmpp.caffeinatedope.net
-        - name: PROSODY_VIRTUAL_HOSTS
-          value: xmpp.caffeinatedope.net
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: xmpp-userconfig
-              key: pass
-        - name: PROSODY_ENABLE_MODULES
-          value: register,welcome,watchregistrations,mam,cloud_notify
-      volumeMounts:
-      - name: config-volume
-        readOnly: true
-        mountPath: "/etc/prosody/conf.d/custom.cfg.lua"
-        subPath: "config.dist"
-      - name: cert-volume
-        readOnly: true
-        mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.crt"
-        subPath: "tls.crt"
-      - name: cert-volume
-        readOnly: true
-        mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
-        subPath: "tls.key" 
-      - name: datastore 
-        readOnly: false
-        mountPath: "/var/lib/prosody"
-    - name: ts-sidecar
-      imagePullPolicy: Always
-      image: "ghcr.io/tailscale/tailscale:latest"
-      env:
-      - name: TS_KUBE_SECRET
-        value: "tailscale-auth"
-      - name: TS_USERSPACE
-        value: "false"
-      - name: TS_DEBUG_FIREWALL_MODE
-        value: auto
-      - name: TS_HOSTNAME
-        value: xmpp
-      - name: TS_AUTHKEY
+spec:
+  serviceAccountName: tailscale
+  containers:
+  - name: xmpp
+    image: prosodyim/prosody:13.0
+    ports:
+    - containerPort: 5222
+    env:
+      - name: LOCAL
+        value: caffeinatedope
+      - name: DOMAIN
+        value: xmpp.caffeinatedope.net
+      - name: PROSODY_VIRTUAL_HOSTS
+        value: xmpp.caffeinatedope.net
+      - name: PASSWORD
         valueFrom:
           secretKeyRef:
-            name: tailscale-auth
-            key: TS_AUTHKEY
-            optional: false
-      - name: TS_EXTRA_ARGS
-        value: "--login-server=https://headscale.caffeinatedope.net"
-      - name: POD_NAME
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.name
-      - name: POD_UID
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.uid
-      securityContext:
-        privileged: true
-    volumes:
-    - name: cert-volume
-      secret:
-        secretName: xmpp-cert
+            name: xmpp-userconfig
+            key: pass
+      - name: PROSODY_ENABLE_MODULES
+        value: register,welcome,watchregistrations,mam,cloud_notify
+    volumeMounts:
     - name: config-volume
-      configMap:
-        name: xmpp-configmap
-    - name: datastore
-      nfs:
-        server: 192.168.7.155
-        path: /mnt/main/xmpp
+      readOnly: true
+      mountPath: "/etc/prosody/conf.d/custom.cfg.lua"
+      subPath: "config.dist"
+    - name: cert-volume
+      readOnly: true
+      mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.crt"
+      subPath: "tls.crt"
+    - name: cert-volume
+      readOnly: true
+      mountPath: "/etc/prosody/certs/xmpp.caffeinatedope.net.key"
+      subPath: "tls.key" 
+    - name: datastore 
+      readOnly: false
+      mountPath: "/var/lib/prosody"
+  - name: ts-sidecar
+    imagePullPolicy: Always
+    image: "ghcr.io/tailscale/tailscale:latest"
+    env:
+    - name: TS_KUBE_SECRET
+      value: "tailscale-auth"
+    - name: TS_USERSPACE
+      value: "false"
+    - name: TS_DEBUG_FIREWALL_MODE
+      value: auto
+    - name: TS_HOSTNAME
+      value: xmpp
+    - name: TS_AUTHKEY
+      valueFrom:
+        secretKeyRef:
+          name: tailscale-auth
+          key: TS_AUTHKEY
+          optional: false
+    - name: TS_EXTRA_ARGS
+      value: "--login-server=https://headscale.caffeinatedope.net"
+    - name: POD_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+    - name: POD_UID
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.uid
+    securityContext:
+      privileged: true
+  volumes:
+  - name: cert-volume
+    secret:
+      secretName: xmpp-cert
+  - name: config-volume
+    configMap:
+      name: xmpp-configmap
+  - name: datastore
+    nfs:
+      server: 192.168.7.155
+      path: /mnt/main/xmpp
