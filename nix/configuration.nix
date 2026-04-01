@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./disk-config.nix
   ];
+  hardware.cpu.x86.msr.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
