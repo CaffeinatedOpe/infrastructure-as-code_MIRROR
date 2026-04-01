@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: pod
+kind: Pod
 metadata:
   name: xmpp-deployment
   labels:
